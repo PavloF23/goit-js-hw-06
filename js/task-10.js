@@ -22,29 +22,42 @@
 // Створи функцію destroyBoxes(), яка очищає вміст div#boxes, у такий спосіб видаляючи всі створені елементи.
 
 
-
+// рандом HEX color
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 };
 
+//прив'язка до кнопок
 const refs = {
   createDiv: document.querySelector('[data-create]'),
   destroyDiv: document.querySelector('[data-destroy]'),
+  boxes: document.getElementById("boxes"),
 };
 
-// refs.createDiv.addEventListener('click', createBoxes);
+//слухач кнопок
+refs.createDiv.addEventListener("click", getAmount);
+refs.destroyDiv.addEventListener("click", destroyBoxes);
 
+// отримати значення amount з input
+function getAmount() {
+  const amount = +document.querySelector("#controls input").value;
+  createBoxes(amount);
+};
 
-document.addEventListener('click', function() {
-  let div = document.createElement('div');
-  div.id = 'boxes';
-  div.innerHTML = 'Hi there!';
-  div.className = 'border pad';
-  div.style.color = getRandomHexColor();
-  div.style.width = 30;
-  div.style.height = 30;
+// створення div
+function createBoxes(amount) {
+  const basicSize = 30;
+  const fragment = document.createDocumentFragment();
+  for (let i = 0; i < amount; i++) {
+    const size = basicSize + i * 10;
+    const div = document.createElement('div');
+    div.style.cssText = `width: ${size}px; height: ${size}px; background-color: ${getRandomHexColor()}`;
+    fragment.appendChild(div);
+  }
+  boxes.appendChild(fragment);
+};
 
-  document.body.appendChild(div);
-}, false);
-
-// console.log(createBoxes)
+// видалення div
+function destroyBoxes() {
+  boxes.textContent = '';
+};
