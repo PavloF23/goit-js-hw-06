@@ -30,6 +30,33 @@ const ingredients = [
   'Herbs',
   'Condiments',
 ];
+
+const ingredients = [
+  'Potatoes',
+  'Mushrooms',
+  'Garlic',
+  'Tomatos',
+  'Herbs',
+  'Condiments',
+];
+
+
+// for (const ingredient of ingredients) {
+//   const ingredientList = document.createElement("li");
+//   ingredientList.classList.add('item')
+//   ingredientList.textContent = ingredient;
+//   console.log(ingredientList);
+// }
+// const liEll = document.querySelector('li')
+
+
+for (let i = 0; i < ingredients.length; i += 1) {
+  // console.log(ingredients[i]);
+  const ingredient = document.createElement("li");
+  ingredient.classList.add('item')
+  ingredient.textContent = ingredients[i];
+  console.log(ingredient);
+}
 let ulList = document.getElementById("ingredients");
 // console.log(ulList);
 const foodIngredients = ingredients.forEach(ingredient => {
@@ -38,5 +65,4 @@ const foodIngredients = ingredients.forEach(ingredient => {
   items.innerHTML = ingredient;
   ulList.append(items);
 });
-
-console.log(foodIngredients);
+// console.log(foodIngredients);
